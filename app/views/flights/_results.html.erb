@@ -1,0 +1,32 @@
+<h1 class='title'>Choose a flight you want</h1>
+
+<% if @results.present? %>
+<table class="table">
+  <%= form_with scope: :book, url: flights_path, method: :get, local: true do |f| %>
+  <%= hidden_field_tag 'book[num_tickets]', @num_tickets %>
+  <tr>
+    <th></th>
+    <th>From</th>
+    <th>To</th>
+    <th>Date</th>
+    <th>Tickets</th>
+  </tr>
+  <% @results.each do |flight| %>
+
+    <tr>
+      <td><%= @results[0] == flight ? radio_button_tag('book[id_flight]', flight.id, selected: true) : radio_button_tag('book[id_flight]', flight.id) %></td>
+      <td><%= flight.from_airport.airport_name %></td>
+      <td><%= flight.to_airport.airport_name %></td>
+      <td><%= flight.start_datetime %></td>
+      <td><%= @num_tickets %></td>
+    </tr>
+
+    <% end %>
+    <tr>
+      <td><%= f.submit 'Book', class: 'button is-link' %></td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+  <p>There is no flight match</p>
+<% end %>

@@ -1,0 +1,18 @@
+  <article class="message">
+    <div class="message-header">
+      <p>Thank you for your booking</p>
+      <button class="delete" aria-label="delete"></button>
+    </div>
+    <div class="message-body">
+      Your plane will fly from <b><%= @flight.from_airport.airport_name %></b>
+      to <b><%= @flight.to_airport.airport_name %></b>
+      at <b><%= @flight.start_datetime.strftime('%Y-%m-%d %H:%M:00') %></b>. <br>
+      The plane will take <b><%= @flight.flight_duration %></b> hour(s). <br><br>
+
+      Passenger: <br>
+      <% @booking.passengers.each do |b| %>
+        <li>Name: <b><%= b.name %></b>, email: <b><%= b.email %></b></li>
+      <% end %> <br>
+      See you soon.
+    </div>
+  </article>

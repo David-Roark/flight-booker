@@ -1,0 +1,45 @@
+<div class="column is-8">
+  <h1 class="title">Find your flight</h1>
+  <table class="table">
+    <%= form_with scope: :flight, url: flights_path, method: :get, local: true do |f| %>
+    <tr>
+      <th><%= f.label :start_airport, 'From', class: 'label' %></th>
+      <th><%= f.label :finish_airport, 'To', class: 'label' %></th>
+      <th><%= f.label :start_datetime, 'Date', class: 'label' %></th>
+      <th><%= f.label :num_tickets, 'Tickets', class: 'label' %></th>
+    </tr>
+    <tr>
+
+      <td>
+        <div class="select">
+          <%= f.select :start_airport, options_for_select(@airports) %>
+        </div>
+      </td>
+      <td>
+        <div class="select">
+          <%= f.select :finish_airport, options_for_select(@airports), include_blank: true %>
+        </div>
+      </td>
+      <td>
+        <div class="select">
+          <%= f.select :start_datetime, options_for_select(@start_datetime), include_blank: true %>
+        </div>
+      </td>
+      <td>
+        <div class="select">
+          <%= f.select :num_tickets, options_for_select([1,2,3,4]) %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.submit 'Search', class: 'button is-link' %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
+  <% if @results %>
+  <%= render "results" %>
+  <% end %>
+</div>
