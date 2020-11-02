@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to Flight Booker</h1>
+    <p>
+      You have successfully booked <%= @booking.passengers.count %> tickets,
+    </p>
+    <div>
+      Your plane will fly from <b><%= @flight.from_airport.airport_name %></b>
+      to <b><%= @flight.to_airport.airport_name %></b>
+      at <b><%= @flight.start_datetime.strftime('%Y-%m-%d %H:%M:00') %></b>. <br>
+      The plane will take <b><%= @flight.flight_duration %></b> hour(s). <br><br>
+
+      Passenger: <br>
+      <% @booking.passengers.each do |b| %>
+        <li>Name: <b><%= b.name %></b>, email: <b><%= b.email %></b></li>
+      <% end %> <br>
+      See you soon.
+    </div>
+    <p>
+      Visit Flight Booker, just follow this link: <%= @url %>.
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

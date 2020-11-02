@@ -1,0 +1,16 @@
+Welcome to Flight Booker
+===============================================
+
+You have successfully booked <%= @booking.passengers.count %> tickets,
+Your plane will fly from ><%= @flight.from_airport.airport_name %>
+to <%= @flight.to_airport.airport_name %>
+at <%= @flight.start_datetime.strftime('%Y-%m-%d %H:%M:00') %>
+The plane will take <b><%= @flight.flight_duration %></b> hour(s).
+
+Passenger:
+<% @booking.passengers.each do |b| %>
+  Name: <%= b.name %>, email: <%= b.email %>
+<% end %>
+See you soon.
+
+Thanks for joining and have a great day!
